@@ -13,6 +13,8 @@ repositories {
 dependencies {
     implementation 'com.meta.social:client:1.0-SNAPSHOT'
     implementation 'com.meta.social:common:1.0-SNAPSHOT'
+    implementation 'com.meta.user-manager:client:1.0-SNAPSHOT'
+    implementation 'com.meta.user-manager:common:1.0-SNAPSHOT'
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
 }

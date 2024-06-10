@@ -1,18 +1,38 @@
 package com.meta.social;
 
+import com.meta.client.auth.core.AuthManager;
+import com.meta.client.auth.core.AuthManagerImpl;
 import com.meta.client.core.SocialManager;
 import com.meta.client.core.SocialManagerImpl;
+import com.meta.common.pojos.LoginUserDto;
+import com.meta.common.pojos.RegisterUserDto;
+import com.meta.common.pojos.UserResponse;
 import com.meta.common.users.PhoneNumber;
 import com.meta.common.users.UserDetails;
 import com.meta.common.users.UserStatus;
 
 public class UserOne {
+    private static AuthManager authManager;
     private static SocialManager socialManager;
+    private static UserResponse user;
     private static final String SERVER_URL = "http://localhost:8080/api/v1";
 
     public static void main(String[] args) {
-        socialManager = new SocialManagerImpl(SERVER_URL);
-        registerUser();
+        authenticate();
+//        socialManager = new SocialManagerImpl(SERVER_URL);
+//        registerUser();
+
+        System.out.println(user.getUserId());
+        System.out.println(user.getToken());
+    }
+
+    private static void authenticate() {
+        authManager = new AuthManagerImpl(SERVER_URL);
+        LoginUserDto userDto = new LoginUserDto();
+        userDto.setEmailId("singh.yuvraj1047@gmail.com");
+//        userDto.setFullName("Yuvraj Singh");
+        userDto.setPassword("Pass@123");
+        user = authManager.signIn(userDto).join();
     }
 
     private static void registerUser() {
